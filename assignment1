@@ -1,0 +1,167 @@
+1. What is OLTP and OLAP. 
+
+A. Online transactional processing (OLTP) enables the real-time execution of large numbers of database transactions by large numbers of people, typically over the internet.
+In OLTP, the common, defining characteristic of any database transaction is its atomicity (or indivisibility)—a transaction either succeeds as a whole or fails (or is 
+canceled). It cannot remain in a pending or intermediate state.
+B. OLAP or online analytical processing, is technology for performing high-speed complex queries or multidimensional analysis on large volumes of data in a data warehouse,
+data lake or other data repository. OLAP is used in business intelligence (BI), decision support, and a variety of business forecasting and reporting applications. 
+But in a data warehouse or data lake, data sets are stored in tables, each of which can organize data into just two of these dimensions at a time. OLAP extracts data from 
+multiple relational data sets and reorganizes it into a multidimensional format that enables very fast processing and very insightful analysis.
+
+2. Differences between OLTP and OLAP.
+
+A. OLTP systems use a relational database that can accommodate a large number of concurrent users and frequent queries and updates, while supporting very fast response times. 
+OLAP systems use a multidimensional database—a special kind of database created from multiple relational databases that enables complex queries of involving multiple data 
+facts from current and historical data. (An OLAP database may be organized as a data warehouse.)
+B. OLTP queries are simple and typically involve just one or a few database records. OLAP queries are complex queries involving large numbers of records.
+C. OLTP transaction and query response times are lightning-fast; OLAP response times are orders of magnitude slower.
+D. OLTP systems modify data frequently (this is the nature of transactional processing); OLAP systems do not modify data at all.
+E. OLTP workloads involve a balance of read and write; OLAP workloads are read-intensive.
+F. OLTP databases require relatively little storage space; OLAP databases work with enormous data sets and typically have significant storage space requirements.
+G. OLTP systems require frequent or concurrent backups; OLAP systems can be backed up far less frequently.
+
+
+3. Database Normal Forms (5 Normal forms).
+
+Normalization :
+Normalization is the process of organizing a database to reduce redundancy and improve data integrity.
+Normalization also simplifies the database design so that it achieves the optimal structure composed of atomic elements (i.e. elements that 
+cannot be broken down into smaller parts).
+By normalizing a database, you arrange the data into tables and columns.  You ensure that each table contains only related data. If data is not 
+directly related, you create a new table for that data.
+Normalization is used to minimize the redundancy from a relation or set of relations. It is also used to eliminate undesirable characteristics 
+like Insertion, Update, and Deletion Anomalies.
+
+There are several normal forms in normalization, each building upon the previous one. 
+A. First Normal Form :
+A relation will be 1NF if it contains an atomic value.
+It states that an attribute of a table cannot hold multiple values. It must hold only single-valued attribute.
+First normal form disallows the multi-valued attribute, composite attribute, and their combinations.
+
+B. Second Normal Form :
+In the 2NF, relational must be in 1NF.
+In the second normal form, all non-key attributes are fully functional dependent on the primary key
+
+C. Third Normal Form :
+A relation will be in 3NF if it is in 2NF and not contain any transitive partial dependency.
+3NF is used to reduce the data duplication. It is also used to achieve the data integrity.
+If there is no transitive dependency for non-prime attributes, then the relation must be in third normal form.
+
+D. Fourth Normal Form (4NF):
+Deals with multi-valued dependencies. It requires that no non-trivial multi-valued dependencies exist; in other words,
+no set of attributes functionally determines a set of other attributes, independent of any candidate key.
+
+E. Fifth Normal Form (5NF) (also known as Project-Join Normal Form or PJNF):
+Handles cases where there are join dependencies. It ensures that the database is free from join dependencies by decomposing schemas into smaller schemas.
+
+
+4. Dimension vs Fact Table and Types of Dimensions
+
+Despite being related to each other, the Fact and Dimension Tables consist of many differences. 
+
+Definition :
+Facts Table :Facts about a business process, such as measurements or metrics.
+Dimension Table : Descriptive characteristics in the companion table to the fact table can be utilized as query constraints.
+
+Characteristics :
+Facts Tables are Positioned in the middle of a snowflake or star schema, surrounded by dimensions.
+Dimension Tables are at The edges of the snowflake or star schema, attached to the fact table,
+
+Task :
+A fact table is a quantifiable event for which data from a dimension table is gathered and used for reporting and analysis.
+Dimension Tables Gathering of background data about a company.
+
+Key :
+The fact table's primary key is mapped as a foreign key to dimensions.
+Each dimension in a dimension table contains a primary key column that uniquely identifies it.
+
+Storage :
+Fact Table Helps to save report labels and filter domain values in dimension tables.
+Dimesion Table Load dimensional structures with thorough atomic data.
+
+Hierarchy :
+Fact table Contains no hierarchy.
+Dimension table Contains Hierarchies. For instance, Location could include a country, state, city, zip code, and more.
+
+The major types of dimensions are categorized as follows:
+Shrunken Rollup Dimensions :
+Shrinks the rows and columns of the base dimension are divided into rollup dimensions. For creating aggregate fact tables, several types of dimensions are helpful.
+
+Outrigger Dimensions :
+There could be a reference in a dimension to some other dimension table. Outrigger dimensions are the name for these extra measurements. Use of these Dimensions 
+should be prudent.
+
+Role-Playing Dimensions :
+A single specific dimension can be mentioned more than once in a table structure since each mention points to one of the dimension's logically separate roles.
+
+Step Dimensions :
+Every step in sequential operations, such as web page events, often has its own row in a fact table. It indicates where in the entire session the particular step 
+should be used.
+
+Degenerate Dimensions :
+Without a comparable dimension, a dimension is degenerate. It is employed in transactions and the gathering of fact tables for snapshots. Since it is taken 
+from the fact table, this type of dimension does not possess its own dimension.
+
+Conformed Dimensions :
+Refer to the very reality of conformed dimensions. This dimension is utilized in data marts or schemas with more than one star.
+
+Junk Dimensions :
+It consists of a group of randomly chosen transactional codes, flags, or text properties. It might not logically fall under any one dimension.
+
+Dimension-to-Dimension Table Joins :
+There may be references to certain other dimensions in a dimension. Outrigger dimensions, however, can be used to model these interactions.
+
+Swappable Dimensions:
+They are applied when various iterations of a single dimension are paired with the same fact table.
+
+
+
+5. Snowflake Vs Star Schema.
+Star Schema in data warehouse, in which the center of the star can have one fact table and a number of associated dimension tables. 
+It is known as star schema as its structure resembles a star. The Star Schema data model is the simplest type of Data Warehouse schema. 
+It is also known as Star Join Schema and is optimized for querying large data sets.
+
+Snowflake Schema in data warehouse is a logical arrangement of tables in a multidimensional database such that the ER diagram resembles a snowflake shape.
+A Snowflake Schema is an extension of a Star Schema, and it adds additional dimensions. The dimension tables are normalized which splits data into additional tables.
+
+Following is a key difference between Snowflake schema vs Star schema:
+____________________________________________________________________________________________________________________
+|                                                     |                                                             |
+|                       Star Schema	                  |              Snowflake Schema                               |
+|_____________________________________________________|_____________________________________________________________|
+|                                                     |                                                             |
+|Hierarchies for the dimensions are stored in the 	  |  Hierarchies are divided into separate tables.              |
+|dimensional table.                                   |                                                             |
+|_____________________________________________________|_____________________________________________________________|
+|                                                     |                                                             |
+|It contains a fact table surrounded by dimension 	  |  One fact table surrounded by dimension table which         |
+|tables.                                              |  are in turn surrounded by dimension table                  |
+|_____________________________________________________|____________________________________________________________ |
+|                                                     |                                                             |
+|In a star schema, only single join creates the 	    |  A snowflake schema requires many joins to fetch the data.  |
+|relationship between the fact table and any          |                                                             |
+|dimension tables.                                    |                                                             |
+|_____________________________________________________|_____________________________________________________________|
+|                                                     |                                                             |
+|             Simple DB Design.	                      |           Very Complex DB Design.                           |
+|_____________________________________________________|_____________________________________________________________|
+|                                                     |                                                             |
+|Denormalized Data structure and query also run faster|	          Normalized Data Structure.                        |
+|_____________________________________________________|_________________________________________ ___________________|
+|                                                     |                                                             |
+|High level of Data redundancy	                      |          Very low-level data redundancy                     |
+|_____________________________________________________|_____________________________________________________________|
+|                                                     |                                                             |
+|Single Dimension table contains aggregated data.	  |    Data Split into different Dimension Tables.                |
+|_____________________________________________________|_____________________________________________________________|
+|                                                     |                                                             |
+|Cube processing is faster.	                          | Cube processing might be slow because of the complex join.  |
+|_____________________________________________________|_____________________________________________________________|
+|                                                     |                                                             |
+|Offers higher performing queries using Star Join     |  The Snowflake schema is represented by centralized fact    |
+|Query Optimization.                                  |  table which unlikely connected with multiple dimensions.   | 
+|Tables may be connected with multiple dimensions.	  |                                                             |
+|_____________________________________________________|_____________________________________________________________|                                                    |                                                             |
+
+
+
