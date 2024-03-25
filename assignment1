@@ -84,6 +84,7 @@ Fact table Contains no hierarchy.
 Dimension table Contains Hierarchies. For instance, Location could include a country, state, city, zip code, and more.
 
 The major types of dimensions are categorized as follows:
+
 Shrunken Rollup Dimensions :
 Shrinks the rows and columns of the base dimension are divided into rollup dimensions. For creating aggregate fact tables, several types of dimensions are helpful.
 
