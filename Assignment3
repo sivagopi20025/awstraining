@@ -1,0 +1,189 @@
+
+9. Create a system design diagram for event driven architecture which trigger an email survey as soon as a purchase transaction at Walmart.
+
+Ans.
+system design diagram for an event-driven architecture that triggers an email survey as soon as a purchase transaction occurs at Walmart:
+
+```
+                         +-------------------------+
+                         |       Walmart POS       |
+                         +-------------------------+
+                                   |
+                                   | Purchase Transaction
+                                   v
+               +------------------------------------------+
+               |         Event Streaming Platform         |
+               |        |
+               +------------------------------------------+
+                |                  |                    |
+                |                  |                    |
+                |                  |                    |
+                v                  v                    v
+  +-------------------------+  +-------------------------+  +-------------------------+
+  |    Survey Generator     |  |   Email Service         |  |    Customer Database    |
+  
+  +-------------------------+  +-------------------------+  +-------------------------+
+```
+
+Explanation:
+
+1. Walmart POS: This is the point-of-sale system at Walmart where purchase transactions are recorded.
+
+2. Event Streaming Platform: An event streaming platform like Kafka or Amazon Kinesis is used to capture and process events. When a purchase transaction occurs at Walmart, an event is generated and pushed to this platform.
+
+3. Survey Generator: Upon receiving the purchase transaction event, a Survey Generator component creates a survey using a predefined template or API provided by a survey service. This component might use a scripting language like Python to interact with the survey service API.
+
+4. Email Service: Once the survey is generated, it is sent to the customer via an email service such as SendGrid or Amazon SES. The email service handles the delivery of emails to customers.
+
+5. Customer Database: This database stores information about customers, including their email addresses and purchase history. It is used by the Survey Generator to fetch customer details and by other parts of the system for reference.
+
+Flow:
+
+1. A purchase transaction occurs at Walmart.
+2. The Walmart POS system generates an event for the purchase transaction.
+3. The event is published to the event streaming platform.
+4. The Survey Generator component consumes the event from the streaming platform.
+5. The Survey Generator creates a survey based on the transaction details and customer information fetched from the Customer Database.
+6. The generated survey is sent to the customer via the Email Service.
+
+
+
+
+
+
+10. Capture all the new data terms from this class and create a data terms catalog.
+
+Ans.
+1. Avro: Avro is a data serialization system that provides compact, fast, and binary data format. It stores both the data schema and the data itself in a single file, making it self-describing. Avro is commonly used in Apache Hadoop and is suitable for use cases where data serialization and deserialization speed is crucial.
+
+2. Parquet: Parquet is a columnar storage format optimized for use in Hadoop ecosystem, particularly with Apache Spark and Apache Hive. It stores data in a highly compressed and efficient columnar manner, allowing for efficient query processing and analytics. Parquet is well-suited for storing and processing large datasets.
+
+3. CSV (Comma-Separated Values): CSV is a simple file format for tabular data in plain text, where each line represents a row of data, and each field within a row is separated by a comma. CSV files are widely used for data interchange between different systems and applications due to their simplicity and compatibility with many software tools.
+
+4. TSV (Tab-Separated Values): Similar to CSV, TSV is a file format for tabular data in plain text, but instead of using commas as field separators, it uses tabs. TSV files are useful when data fields themselves may contain commas, as the tab character is less likely to occur within the data.
+
+5. ZIP: ZIP is a popular compression and archive file format used to compress one or more files into a single file. It reduces the file size and makes it easier to transfer and store large amounts of data. ZIP files can be created and extracted using various software tools and utilities.
+
+6. Excel: Excel is a spreadsheet application developed by Microsoft. It stores data in a proprietary binary format (.xls) or XML-based format (.xlsx). Excel files can contain multiple sheets, formulas, charts, and other features, making them widely used for data analysis, reporting, and visualization.
+
+7. Binary: Binary files store data in a format that is not directly human-readable, often consisting of sequences of bytes representing various data types. Binary files can be structured or unstructured and are used for storing data in a compact and efficient manner, such as images, audio, video, and executable programs.
+
+8. TXT (Plain Text): TXT files store data in plain text format, with each line of text typically representing a record or data point. TXT files are simple and can be opened and edited with any text editor. They are commonly used for storing configuration files, logs, and other types of textual data.
+
+9. Data Ingestion:
+Ans. Data ingestion is the process of collecting, importing, and importing raw data from various sources into a storage or processing system. It involves extracting data from its source, transforming it into a format suitable for analysis or storage, and loading it into a target system. Data ingestion typically focuses on moving data from source systems to a centralized location for further processing or analysis.
+
+10. Amazon OpenSearch Service:
+Ans. Amazon OpenSearch Service (formerly known as Amazon Elasticsearch Service) is a fully managed service provided by Amazon Web Services (AWS) for deploying, operating, and scaling Elasticsearch clusters in the cloud. Elasticsearch is a distributed, RESTful search and analytics engine designed for horizontal scalability, high availability, and real-time search capabilities. Amazon OpenSearch Service simplifies the process of setting up and managing Elasticsearch clusters, allowing users to index and search large volumes of data efficiently.
+
+11. Amazon MSK:
+Ans. Amazon Managed Streaming for Apache Kafka (Amazon MSK) is a fully managed service provided by AWS for running Apache Kafka clusters in the cloud. 
+Apache Kafka is an open-source distributed streaming platform used for building real-time data pipelines and event-driven architectures. Amazon MSK 
+simplifies the deployment, management, and operation of Kafka clusters, allowing users to ingest, process, and analyze streaming data at scale.
+
+12. Amazon Elastic Block Store (EBS):
+Ans. Amazon Elastic Block Store (EBS) is a block storage service provided by AWS for storing persistent data volumes attached to Amazon EC2 instances. 
+EBS volumes are network-attached storage devices that provide durable and scalable block-level storage for EC2 instances. EBS volumes are highly 
+available and offer features such as snapshots, encryption, and performance optimization options to meet various storage requirements.
+
+13. AWS Glue & Glue Crawler:
+Ans. A. AWS Glue is a fully managed extract, transform, and load (ETL) service provided by AWS for preparing and transforming data for analytics.
+It allows users to create and manage ETL jobs using a visual interface or by writing custom code in Python or Scala. AWS Glue automates the process
+of discovering, cataloging, and cleaning data from various sources, making it easier to analyze and derive insights from large datasets.
+B. AWS Glue Crawler is a component of AWS Glue that automatically scans and catalogs data stored in various data stores, including Amazon S3, 
+Amazon RDS, Amazon Redshift, and others. It analyzes the data schema, extracts metadata, and creates a centralized metadata repository (known
+as the Glue Data Catalog) that can be used by other AWS services for data processing and analytics.
+
+14. ORC (Optimized Row Columnar): 
+ORC is a columnar storage format used for storing large volumes of data in Hadoop ecosystems, such as Apache Hive. It is designed to optimize performance
+and efficiency for data processing tasks, especially those involving analytics and querying.
+
+
+
+
+11. Read understand and write about 5 V’s of Data with example scenario for each.
+
+Ans.
+The 5 V's of data - Volume, Velocity, Variety, Veracity, and Value - are crucial concepts in the realm of big data. They provide a framework for 
+understanding the characteristics and challenges associated with managing and analyzing large datasets. 
+
+1. Volume:
+=============
+   - Definition: Volume refers to the sheer size of the data being generated or stored. It represents the quantity of data available for analysis.
+   - Example Scenario: A social media platform like Facebook generates a massive volume of data every second, including user posts, comments, likes, 
+   shares, and messages. With billions of active users, the volume of data stored by Facebook is immense, requiring robust infrastructure and scalable 
+   solutions to handle it efficiently.
+
+2. Velocity:
+=============
+   - Definition: Velocity refers to the speed at which data is generated, collected, and processed. It emphasizes the rate at which data flows into the system.
+   - Example Scenario: A stock trading platform processes real-time market data to execute trades swiftly. The platform must handle the rapid influx of stock 
+   prices, buy/sell orders, and market news to provide timely insights and execute trades accurately. The velocity of data in this scenario is critical for 
+   making split-second decisions in a dynamic market environment.
+
+3. Variety:
+===============
+   - Definition: Variety refers to the diversity or heterogeneity of data types and sources. It encompasses structured, semi-structured, and unstructured
+   data formats.
+   - Example Scenario: An e-commerce company like Amazon collects various types of data, including customer profiles, product descriptions, purchase history, 
+   clickstream data, and reviews. This data comes in different formats such as structured databases, JSON files, text documents, and multimedia content. 
+   Managing and analyzing this diverse range of data sources requires flexible data processing techniques capable of handling varied data formats effectively.
+
+4. Veracity:
+===============
+   - Definition: Veracity relates to the quality, accuracy, and reliability of the data. It emphasizes the trustworthiness and consistency of the information
+   being analyzed.
+   - Example Scenario: A sensor network deployed for environmental monitoring gathers data on air quality, temperature, humidity, and pollution levels. 
+   However, due to sensor malfunctions, environmental changes, or data transmission errors, the collected data may contain inaccuracies or inconsistencies.
+   Ensuring the veracity of the data involves implementing quality control measures, data validation checks, and error correction mechanisms to maintain 
+   data integrity and reliability.
+
+5. Value:
+===============
+   - Definition: Value represents the significance or utility derived from analyzing and extracting insights from data. It focuses on the actionable insights
+   and business value generated by data analytics.
+   - Example Scenario: A healthcare provider analyzes electronic health records (EHRs) and patient data to identify patterns, trends, and correlations that can
+   improve medical diagnosis, treatment outcomes, and patient care. By leveraging advanced analytics techniques such as machine learning and predictive modeling,
+   healthcare organizations can uncover valuable insights that lead to better clinical decisions, reduced costs, and improved patient outcomes.
+
+
+
+
+12. What is Data Ingestion vs Data Integration, explain them with a real-world use-case.
+
+Data ingestion and data integration are both important processes in managing and utilizing data within an organization, but they serve different purposes
+and involve distinct activities.
+
+Data Ingestion:
+=================
+
+Data ingestion refers to the process of collecting, importing, and importing raw data from various sources into a storage or processing system. It involves 
+extracting data from its source, transforming it into a format suitable for analysis or storage, and loading it into a target system. Data ingestion typically
+ focuses on moving data from source systems to a centralized location for further processing or analysis.
+
+Real-world Use-case of Data Ingestion:
+----------------------------------------
+Consider a retail company that operates both brick-and-mortar stores and an online e-commerce platform. The company collects data from multiple sources, 
+including point-of-sale (POS) systems in stores, website interactions, mobile apps, social media, and customer feedback forms. To gain insights into customer behavior, inventory management, and sales performance, the company needs to ingest data from these diverse sources into a centralized data warehouse or data lake.
+
+Using data ingestion tools or platforms, such as Apache Kafka, Amazon Kinesis, or Google Cloud Pub/Sub, the retail company can efficiently capture and 
+ingest real-time data streams from POS terminals, web servers, and other sources. The data ingestion process involves extracting transactional data, user
+ interactions, product details, and other relevant information, transforming it if necessary, and loading it into the data storage system.
+
+
+Data Integration:
+=======================
+
+Data integration, on the other hand, involves combining data from different sources or systems to provide users with a unified and coherent view of the data. 
+It aims to harmonize data from disparate sources, resolve inconsistencies, and ensure data consistency and accuracy across the organization. Data integration 
+often involves merging, cleansing, transforming, and reconciling data to create a cohesive and comprehensive dataset.
+
+Real-world Use-case of Data Integration:
+-----------------------------------------
+with the example of the retail company, once the raw data is ingested from various sources into a centralized repository, the next step is to 
+integrate and consolidate this data to create a unified view of the business. The company may have separate databases for sales transactions, customer profiles,
+inventory records, and marketing campaigns.
+
+Using data integration tools or platforms, such as Apache Spark, Talend, or Informatica, the retail company can merge and harmonize data from different 
+databases, applications, and systems. For example, it can integrate customer data from the CRM system with sales data from the POS system, inventory data
+from the warehouse management system, and website analytics data from the e-commerce platform.
